@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "handlebars": "^4.7.8",
+    "hbs": "^4.2.0",
+    "hjs": "^0.0.6",
+    "mysql2": "^3.11.4"
+  }
+}

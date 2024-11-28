@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions List</title>
+</head>
+
+<body>
+    <h2>Transactions</h2>
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Seller ID</th>
+                <th>Product ID</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Buyer ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#data}}
+            {{> row}}
+            {{/data}}
+            <tr id="add">
+                <td colspan="7" class="text-center">
+                    <form hx-post="/transactions" hx-swap="beforeend">
+                        <input type="text" name="seller_id" placeholder="Seller ID" required>
+                        <input type="text" name="product_id" placeholder="Product ID" required>
+                        <input type="number" step="0.01" name="price" placeholder="Price" required>
+                        <select name="status" required>
+                            <option value="open">Open</option>
+                            <option value="close">Close</option>
+                        </select>
+                        <input type="text" name="buyer_id" placeholder="Buyer ID (optional)">
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination controls -->
+    <div class="pagination">
+        {{#currentPage}}
+        {{#isFirstPage}}
+        <span class="disabled">&laquo; Previous</span>
+        {{/isFirstPage}}
+        {{^isFirstPage}}
+        <a href="?page={{previousPage}}">&laquo; Previous</a>
+        {{/isFirstPage}}
+        {{/currentPage}}
+
+        {{#pages}}
+        {{#isCurrent}}
+        <span class="current">{{.}}</span>
+        {{/isCurrent}}
+        {{^isCurrent}}
+        <a href="?page={{.}}">{{.}}</a>
+        {{/isCurrent}}
+        {{/pages}}
+
+        {{#currentPage}}
+        {{#isLastPage}}
+        <span class="disabled">Next &raquo;</span>
+        {{/isLastPage}}
+        {{^isLastPage}}
+        <a href="?page={{nextPage}}">Next &raquo;</a>
+        {{/isLastPage}}
+        {{/currentPage}}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+<div class="product-list">
+    <ul>
+        {{#products}}
+        <li>{{product_name}} - {{price}}</li>
+        {{/products}}
+    </ul>
+</div>

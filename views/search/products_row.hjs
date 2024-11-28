@@ -1,0 +1,11 @@
+<tr>
+    <td>{{product_id}}</td>
+    <td>{{title}}</td>
+    <td>{{category_id}}</td>
+    <td>${{price}}</td>
+    <td>
+        <button class="btn btn-primary btn-sm" hx-get="/products/edit/{{product_id}}" hx-target="closest tr" hx-swap="outerHTML">
+            <i class="bi bi-pencil"></i> Edit
+        </button>
+    </td>
+</tr>

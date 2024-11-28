@@ -1,0 +1,16 @@
+<tr>
+    <td>{{transaction_id}}</td>
+    <td colspan="6">
+        <form hx-put="/transactions/{{transaction_id}}" hx-target="closest tr" hx-swap="outerHTML">
+            <input type="text" name="seller_id" value="{{seller_id}}" required>
+            <input type="text" name="product_id" value="{{product_id}}" required>
+            <input type="number" step="0.01" name="price" value="{{price}}" required>
+            <select name="status" required>
+                <option value="open" {{openSelected}}>Open</option>
+                <option value="close" {{closeSelected}}>Close</option>
+            </select>
+            <input type="text" name="buyer_id" value="{{buyer_id}}">
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </form>
+    </td>
+</tr>

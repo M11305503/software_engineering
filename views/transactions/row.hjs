@@ -1,0 +1,12 @@
+<tr>
+    <td>{{transaction_id}}</td>
+    <td>{{seller_id}}</td>
+    <td>{{product_id}}</td>
+    <td>{{price}}</td>
+    <td>{{status}}</td>
+    <td>{{buyer_id}}</td>
+    <td>
+        <button hx-get="/transactions/{{transaction_id}}" hx-target="closest tr" hx-swap="outerHTML" class="btn btn-primary btn-sm">Edit</button>
+        <button hx-delete="/transactions/{{transaction_id}}" hx-target="closest tr" class="btn btn-danger btn-sm">Delete</button>
+    </td>
+</tr>

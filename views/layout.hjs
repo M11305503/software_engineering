@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script src="/htmx.min.js"></script>
+    <script src="/response-targets.js"></script>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/style.css"> <!-- 新增樣式檔案引用 -->
+    <script src="/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+    <header class="text-center">
+        <h1>CollaborationConstruct e-Management</h1>
+    </header>
+    {{> navbar}}
+    <div id="toast"></div>
+    
+    <main id="main" hx-ext="response-targets" hx-target-error="#toast" class="home-page" {{#where}} hx-trigger="load" hx-get="{{where}}" {{/where}} style="position: relative;">
+        <!-- 中央圖示 -->
+        <div class="d-flex justify-content-center align-items-center"
+            style="width: 100%; margin: 0 auto; height: 67vh;">
+            <i class="bi bi-cone-striped" style="font-size: 40vh; margin-right: 60px;"></i>
+            <i class="bi bi-currency-exchange" style="font-size: 14vh; margin: 0 40px; align-self: center;"></i>
+            <i class="bi bi-truck-flatbed" style="font-size: 40vh; margin-left: 60px;"></i>
+        </div>
+
+        <!-- 廣告區域 -->
+        <div id="ad-left" class="ad-container ad-left"></div>
+        <div id="ad-right" class="ad-container ad-right"></div>
+        <div id="ad-bottom" class="ad-container ad-bottom"></div>
+    </main>
+
+    <script src="/advertisementRender.js"></script>
+
+    <footer class="text-center">
+        <p>&copy;Powered by CollaborationConstruct</p>
+    </footer>
+
+    <!-- JavaScript to support "cancel" functionality -->
+    <script>
+        document.querySelector('#toast').addEventListener('htmx:afterSwap', function (event) {
+            const elem = this;
+            elem.style.opacity = 1.0;
+            setTimeout(function () {
+                elem.style.opacity = 0.0;
+                elem.style.transition = 'opacity 1s ease-out';
+            }, 3000);
+            elem.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        });
+
+        // Store original content on page load and after HTMX swaps
+        document.addEventListener('htmx:load', function () {
+            document.querySelectorAll('[hx-get]').forEach(element => {
+                const tdElement = element.closest('td');
+                if (tdElement) {
+                    tdElement.dataset.originalContent = tdElement.innerHTML;
+                }
+            });
+        });
+
+        // Restore original content on "cancel" button click
+        document.addEventListener('cancel', function (event) {
+            const tdElement = event.target.closest('td');
+            if (tdElement && tdElement.dataset.originalContent) {
+                // Restore the original content
+                tdElement.innerHTML = tdElement.dataset.originalContent;
+                // Re-initialize HTMX for restored content
+                htmx.process(tdElement);
+            }
+        });
+
+        document.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-Requested-With'] = 'XMLHttpRequest';
+        });
+
+        document.addEventListener('htmx:afterSwap', (event) => {
+            if (event.detail.elt.dataset.cancel === "true") {
+                htmx.trigger(event.detail.elt.closest('tr'), 'cancel');
+            }
+        });
+    </script>
+</body>
+
+</html>

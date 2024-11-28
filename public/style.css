@@ -1,0 +1,46 @@
+.ad-container {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.ad-left {
+    position: absolute;
+    top: 25%;
+    left: -65px;
+    transform: translateY(-30%);
+    width: 150px;
+    height: 300px;
+    /* 調整高度 */
+}
+
+.ad-right {
+    position: absolute;
+    top: 25%;
+    right: -65px;
+    transform: translateY(-30%);
+    width: 150px;
+    height: 300px;
+    /* 調整高度 */
+}
+
+.ad-bottom {
+    position: relative;
+    /* 設定相對定位 */
+    margin: 0 auto 5px auto;
+    /* 自動對齊頁面中央，並調整底部間距 */
+    width: 90%;
+    text-align: center;
+}
+
+/* 調整主區域內部的高度 */
+main > .d-flex {
+    height: 70vh; /* 調整內容高度以縮小頁面間距 */
+  }
+  
+  /* 保證廣告不壓縮內容但控制間距 */
+  .d-flex {
+    margin-bottom: 10px; /* 減少內部區塊與底部廣告的距離 */
+  }

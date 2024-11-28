@@ -1,0 +1,14 @@
+<tr>
+    <td>
+        <input type="text" name="title" value={{title}} required>
+    </td>
+    <td>
+        <input type="number" name="price" value={{price}} step="0.01" required>
+    </td>
+    <td>
+        <button hx-put="/products/${req.params.product_id}" hx-include="closest tr" hx-target="closest tr"
+            hx-swap="outerHTML" class="btn btn-success btn-sm">
+            <i class="bi bi-check-lg"></i>
+        </button>
+    </td>
+</tr>

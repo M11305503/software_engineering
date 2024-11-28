@@ -1,0 +1,9 @@
+<form hx-put="/pNutritions/{{pid}}/{{ID}}" hx-target="closest td" hx-swap="innerHTML">
+    <input type="number" name="value" value="{{value}}" required class="form-control">
+    <button type="submit" class="btn btn-success btn-sm">
+        <i class="bi bi-check-lg"></i>
+    </button>
+    <button type="button" class="btn btn-warning btn-sm" onclick="htmx.trigger(this.closest('td'), 'cancel')">
+        <i class="bi bi-x-lg"></i>
+    </button>
+</form>

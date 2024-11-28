@@ -1,0 +1,3 @@
+{{#nutritions}}
+<option value="{{ID}}">{{description}} {{unit}}</option>
+{{/nutritions}}

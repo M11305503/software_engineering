@@ -1,0 +1,11 @@
+<form hx-post="/products" hx-target="#message">
+    <select class="form-select" name="category_id">
+        <option value="">--- Select a product type ---</option>
+        {{#types}}
+        <option value="{{category_id}}">{{description}}</option>
+        {{/types}}
+    </select>
+    <input class="form-control" type="text" name="title" placeholder="product name">
+    <button class="btn btn-primary" type="submit">Add this product</button>
+</form>
+<div id="message"></div>

@@ -1,0 +1,53 @@
+<h2>Product Nutrition</h2>
+<ul>
+    <li>Product ID: {{pid}} </li>
+    <li>Product name: {{product.description}} </li>
+    <li>Product type: {{product.typename}} </li>
+</ul>
+<h2> Nutrition Facts </h2>
+<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Nutrient </th>
+            <th> Unit </th>
+            <th> Value </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#nutritions}}
+        <tr>
+            <td>
+                <span class="btn btn-danger" hx-delete="/pNutritions/{{pid}}/{{ID}}" hx-target="closest tr">
+                    <i class="bi bi-trash3-fill"></i>
+                </span>
+            </td>
+            <td> {{description}} </td>
+            <td> {{unit}} </td>
+            <td>
+                <span hx-get="/pNutritions/edit/{{pid}}/{{ID}}/{{value}}" hx-target="closest td" hx-swap="innerHTML"></span> 
+                    {{value}}
+                </span>
+                <button class="btn btn-primary btn-sm" hx-get="/pNutritions/edit/{{pid}}/{{ID}}/{{value}}" hx-target="closest td" hx-swap="innerHTML">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                
+            </td>
+        </tr>
+        {{/nutritions}}
+        <tr>
+            <td colspan="4">
+                <form class="form-inline row" hx-post="/pNutritions/{{pid}}" hx-trigger="submit" hx-target="#main">
+                    <select class="form-select col" name="nutrient" required hx-trigger="load"
+                        hx-trigger="load, refresh-nutrients from:body" 
+                        hx-get="/pNutritions/missing/{{pid}}" hx-target="this">
+                    </select>
+                    <input type="number" class="form-control col" name="value" placeholder="Value" required>
+                    <button class="btn btn-success col">
+                        <i class="bi bi-plus-lg"></i> Add
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,10 @@
+<div>
+  <h1>註冊新用戶</h1>
+  <form id="signupForm" method="post" action="/signup">
+    <input type="text" name="first_name" placeholder="first name" required />
+    <input type="text" name="last_name" placeholder="last name" required />
+    <input type="email" name="email" placeholder="email" required />
+    <input type="password" name="password" placeholder="password" required />
+    <button type="submit">submit</button>
+  </form>
+</div>

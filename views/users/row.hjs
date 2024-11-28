@@ -1,0 +1,11 @@
+<tr>
+    <td>{{user_id}}</td>
+    <td>{{first_name}}</td>
+    <td>{{last_name}}</td>
+    <td>{{email}}</td>
+    <td>{{password}}</td>
+    <td>
+        <button hx-get="/users/{{user_id}}" hx-target="closest tr" hx-swap="outerHTML" class="btn btn-primary btn-sm">Edit</button>
+        <button hx-delete="/users/{{user_id}}" hx-target="closest tr" class="btn btn-danger btn-sm">Delete</button>
+    </td>
+</tr>

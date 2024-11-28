@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Products by Seller</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Seller ID</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Category ID</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#products}}
+            <tr>
+                <td>{{seller_id}}</td>
+                <td>{{product_id}}</td>
+                <td>{{title}}</td>
+                <td>{{category_id}}</td>
+                <td>${{price}}</td>
+            </tr>
+            {{/products}}
+        </tbody>
+    </table>
+</div>

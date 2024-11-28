@@ -1,0 +1,12 @@
+<tr>
+    <td>{{user_id}}</td>
+    <td colspan="5">
+        <form hx-put="/users/{{user_id}}" hx-target="closest tr" hx-swap="outerHTML">
+            <input type="text" name="first_name" value="{{first_name}}" required>
+            <input type="text" name="last_name" value="{{last_name}}" required>
+            <input type="email" name="email" value="{{email}}" required>
+            <input type="text" name="password" value="{{password}}" required>
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </form>
+    </td>
+</tr>

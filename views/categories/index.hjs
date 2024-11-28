@@ -1,0 +1,22 @@
+<h2>Categories</h2>
+<table class="table table-striped table-hover table-sm">
+    <thead>
+        <tr>
+            <th>category_id</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#data}}
+        {{> row}}
+        {{/data}}
+        <tr id="add">
+            <td colspan='2' class="text-center">
+                <form hx-post="/categories" hx-swap="beforeend">
+                    <input type="text" name="description" placeholder="Enter category" required>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

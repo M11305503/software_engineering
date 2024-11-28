@@ -143,7 +143,12 @@ app.put("/:product_id", async function (req, res) {
         if (data.length > 0) {
             res.send(`
                 <tr>
-                    <td>${data[0].product_id}</td>
+                    <td>
+                    <span class="btn btn-danger" hx-delete="/products/{{product_id}}" hx-target="closest tr">
+                            <i class="bi bi-trash3-fill"></i>
+                        </span>
+                    ${data[0].product_id}
+                    </td>
                     <td>${data[0].title}</td>
                     <td>$${data[0].price}</td>
                     <td>
@@ -152,6 +157,11 @@ app.put("/:product_id", async function (req, res) {
                                 hx-target="closest tr" 
                                 hx-swap="outerHTML">
                             <i class="bi bi-pencil"></i> Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm">
+                            <i class="bi bi-arrow-right-circle"></i> Details
                         </button>
                     </td>
                 </tr>
